@@ -27,7 +27,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "yeoman-generator": "^4.7.2",
-    "chalk": "^3.0.0"
+    "chalk": "^3.0.0",
+    "yeoman-generator": "^4.7.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.2"
   }
 }
