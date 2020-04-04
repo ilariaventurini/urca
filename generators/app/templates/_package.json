@@ -1,0 +1,24 @@
+{
+  "name": "<%= appnameKebabCase %>",
+  "description": "<%= description %>",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ilariaventurini/<%= appnameKebabCase %>.git"
+  },
+  "author": {
+    "name": "Ilaria Venturini",
+    "email": "venturini.ila@gmail.com"
+  },
+  "private": <%= publicRepository ? false : true %>,
+  <%_ if (license) { _%>
+  "license": "MIT",
+    <%_
+  } _%>
+  "keywords": [],
+  "scripts": {
+    "compile": "tsc"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
