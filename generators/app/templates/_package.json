@@ -10,12 +10,11 @@
     "name": "Ilaria Venturini",
     "email": "venturini.ila@gmail.com"
   },
-  "private": <%= publicRepository ? false : true %>,
-  <%_ if (license) { _%>
-  "license": "MIT",
-    <%_
-  } _%>
-  "keywords": [],
+  "private": <%= privateRepository %>,
+  <% if(license) { _%>
+"license": "MIT",
+  <% } _%>
+"keywords": [],
   "scripts": {
     "compile": "tsc"
   },

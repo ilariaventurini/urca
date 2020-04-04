@@ -24,7 +24,7 @@ const MyGenerator = class extends Generator {
   // (1) initializing - Your initialization methods (checking current project state, getting configs, etc)
   ////////////////////////////////////////
   initializing() {
-    this.log('\n(0) initializing...')
+    this.log('\n(1) initializing...')
   }
 
   ////////////////////////////////////////
@@ -39,6 +39,8 @@ const MyGenerator = class extends Generator {
     // to go on to the next function until that callback gets executed, which you can see it does at the end,
     // after prompting the user
 
+    const appnameKebabCase = _.kebabCase(this.appname) // from `app name` to `app-name`
+
     // We defined a list of prompts, each prompt has a type, a name and a message.
     // If no type was specified, it will default to ‘input' which is for standard text entry
     const prompts = [
@@ -46,7 +48,7 @@ const MyGenerator = class extends Generator {
         type: 'input',
         name: `appname`,
         message: `What is your app's name?`,
-        default: _.kebabCase(this.appname), // Default to current folder name
+        default: appnameKebabCase, // Default to current folder name
       },
       {
         type: 'input',
@@ -55,17 +57,10 @@ const MyGenerator = class extends Generator {
       },
       {
         type: 'confirm',
-        name: 'publicRepository',
-        message: `Would you like to create a public repository?`,
-        default: false,
+        name: 'privateRepository',
+        message: `Would you like to create a private repository?`,
+        default: true,
       },
-      // {
-      //   type: 'list',
-      //   name: 'license',
-      //   message: `What license should be used?`,
-      //   choices: ['UNLICENSED', 'MIT'],
-      //   default: 'MIT',
-      // },
       {
         type: 'confirm',
         name: 'license',
@@ -77,11 +72,22 @@ const MyGenerator = class extends Generator {
         name: 'githubUsername',
         message: `What's your GitHub username?`,
       },
+      // {
+      //   type: 'list',
+      //   name: 'license',
+      //   message: `What license should be used?`,
+      //   choices: ['UNLICENSED', 'MIT'],
+      //   default: 'MIT',
+      // },
     ]
+
+    // TODO:
+    // - keywords
 
     return this.prompt(prompts).then(answers => {
       this.answers = answers
-      this.answers.appnameKebabCase = _.kebabCase(this.appname) // from `app name` to `app-name`
+      this.answers.appname = this.appname
+      this.answers.appnameKebabCase = appnameKebabCase
     })
   }
 
@@ -104,18 +110,27 @@ const MyGenerator = class extends Generator {
     const {
       appnameKebabCase,
       description,
-      publicRepository,
+      privateRepository,
       license,
       githubUsername,
     } = this.answers
+    const appname = this.appname
 
     // package.json
     this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
       appnameKebabCase,
       description,
-      publicRepository,
+      privateRepository,
       license,
     })
+
+    // README.md and assets
+    this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
+      appname,
+      appnameKebabCase,
+      description,
+    })
+    this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 
     // git
     this.fs.copyTpl(this.templatePath('gitignore'), this.destinationPath('.gitignore'))
@@ -155,7 +170,7 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   end() {
     this.log('\n(8) end...')
-    this.log(`Application ${this.appName} generated successfully. Bye :)`)
+    this.log(`Application ${this.appname} generated successfully. Bye :)`)
   }
 }
 
