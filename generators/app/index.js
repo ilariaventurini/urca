@@ -4,6 +4,8 @@
 const Generator = require('yeoman-generator')
 const _ = require('lodash')
 
+const { getCurrentYear, kebabCase, capitalizeFirstCase } = require('./utils')
+
 // All that this code is doing is creating this generator object and exporting it out,
 // Yeoman will actually retrieve the exported object and run it.
 // The way it runs, is by first calling the constructor method to set the object up and then
@@ -25,7 +27,8 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   initializing() {
     this.log('\n(1) initializing...')
-    this.licenseYear = new Date().getFullYear()
+    // this.log('this:', JSON.stringify(this, null, 2))
+    this.currentYear = getCurrentYear()
   }
 
   ////////////////////////////////////////
@@ -40,20 +43,20 @@ const MyGenerator = class extends Generator {
     // to go on to the next function until that callback gets executed, which you can see it does at the end,
     // after prompting the user
 
-    const appnameKebabCase = _.kebabCase(this.appname) // from `app name` to `app-name`
-
     // We defined a list of prompts, each prompt has a type, a name and a message.
     // If no type was specified, it will default to ‘input' which is for standard text entry
     const prompts = [
       {
         type: 'input',
-        name: `appname`,
-        message: `What is your app's name?`,
-        default: appnameKebabCase, // Default to current folder name
+        name: `appNameKebabCase`,
+        message: `What is your app's name? Use kebab case format`,
+        default: kebabCase(this.appname), // Default to current folder name
+        filter: kebabCase, // Transform input to kebab case
+        validate: str => str.length > 0
       },
       {
         type: 'input',
-        name: `description`,
+        name: `appDescription`,
         message: `Insert a description`,
       },
       {
@@ -87,8 +90,8 @@ const MyGenerator = class extends Generator {
 
     return this.prompt(prompts).then(answers => {
       this.answers = answers
-      this.answers.appname = this.appname
-      this.answers.appnameKebabCase = appnameKebabCase
+      this.answers.appName = this.appname
+      this.answers.appNameCapitalizeFirst = capitalizeFirstCase(this.appname)
     })
   }
 
@@ -109,30 +112,32 @@ const MyGenerator = class extends Generator {
     this.log('this.answers:', JSON.stringify(this.answers, null, 2))
 
     const {
-      appnameKebabCase,
-      description,
+      appName,
+      appNameKebabCase,
+      appNameCapitalizeFirst,
+      appDescription,
       privateRepository,
       license,
       githubUsername,
     } = this.answers
-    const appname = this.appname
 
     // package.json
     this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
-      appnameKebabCase,
-      description,
+      appNameKebabCase,
+      appDescription,
       privateRepository,
       license,
     })
 
     // LICENSE
-    this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { licenseYear: this.licenseYear })
+    this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { currentYear: this.currentYear })
 
     // README.md and assets
     this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
-      appname,
-      appnameKebabCase,
-      description,
+      appName,
+      appNameKebabCase,
+      appNameCapitalizeFirst,
+      appDescription,
     })
     this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 

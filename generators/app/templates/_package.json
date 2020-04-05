@@ -1,10 +1,10 @@
 {
-  "name": "<%= appnameKebabCase %>",
-  "description": "<%= description %>",
+  "name": "<%= appNameKebabCase %>",
+  "description": "<%= appDescription %>",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ilariaventurini/<%= appnameKebabCase %>.git"
+    "url": "https://github.com/ilariaventurini/<%= appNameKebabCase %>.git"
   },
   "author": {
     "name": "Ilaria Venturini",

@@ -2,23 +2,23 @@
 
 ![logo](./assets/logo.png)
 
-  <h1><%= appname %></h1>
+  <h1><%= appNameCapitalizeFirst %></h1>
 
-<%= description %>
+<%= appDescription %>
 
 </div>
 
 <p align="center">
   <!-- npm version -->
-  <a href="https://www.npmjs.com/package/<%= appnameKebabCase %>">
+  <a href="https://www.npmjs.com/package/<%= appNameKebabCase %>">
     <img alt="npm"
-      src="https://img.shields.io/npm/v/<%= appnameKebabCase %>">
+      src="https://img.shields.io/npm/v/<%= appNameKebabCase %>">
   </a>
 
   <!-- code coverage -->
-  <a href="https://codecov.io/gh/ilariaventurini/<%= appnameKebabCase %>">
+  <a href="https://codecov.io/gh/ilariaventurini/<%= appNameKebabCase %>">
     <img alt="coverage"
-      src="https://codecov.io/gh/ilariaventurini/<%= appnameKebabCase %>/branch/master/graph/badge.svg?token=Z1RP613QQC&style=flat-square">
+      src="https://codecov.io/gh/ilariaventurini/<%= appNameKebabCase %>/branch/master/graph/badge.svg?token=Z1RP613QQC&style=flat-square">
   </a>
 </p>
 
@@ -29,13 +29,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## ⚙️ Install
 
 ```bash
-yarn add <%= appnameKebabCase %>
+yarn add <%= appNameKebabCase %>
 ```
 
 or
 
 ```bash
-npm install <%= appnameKebabCase %> --save
+npm install <%= appNameKebabCase %> --save
 ```
 
 ## 📷 Screenshots
@@ -60,7 +60,7 @@ This theme is still in progress. Anyway, if you open an issue (or a PR), I will 
 
 ## License
 
-[MIT](https://github.com/ilariaventurini/<%= appnameKebabCase %>/blob/master/LICENSE) © [Ilaria
+[MIT](https://github.com/ilariaventurini/<%= appNameKebabCase %>/blob/master/LICENSE) © [Ilaria
 Venturini](https://github.com/ilariaventurini)
 
 <!--
