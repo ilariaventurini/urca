@@ -5,6 +5,7 @@ const Generator = require('yeoman-generator')
 const _ = require('lodash')
 
 const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = require('./utils')
+const { dependencies, devDependencies } = require('./constants')
 
 // All that this code is doing is creating this generator object and exporting it out,
 // Yeoman will actually retrieve the exported object and run it.
@@ -77,20 +78,30 @@ const MyGenerator = class extends Generator {
       },
       {
         type: 'input',
-        name: 'githubUsername',
-        message: `What's your GitHub username?`,
+        name: `githubUsername`,
+        message: `Insert GitHub username`,
+        store: true,
+      },
+      {
+        type: 'input',
+        name: `githubEmail`,
+        message: `Insert GitHub email`,
+        store: true,
+      },
+      {
+        type: 'input',
+        name: `firstLastName`,
+        message: `Insert first name and last name`,
+        store: true,
       },
       // {
       //   type: 'list',
-      //   name: 'license',
-      //   message: `What license should be used?`,
-      //   choices: ['UNLICENSED', 'MIT'],
-      //   default: 'MIT',
+      //   name: 'dependencies',
+      //   message: `What dependencies you want install?`,
+      //   choices: DEPENDENCIES,
+      //   default: ['lodash', 'd3'],
       // },
     ]
-
-    // TODO:
-    // - keywords
 
     return this.prompt(prompts).then(answers => {
       this.answers = answers
@@ -114,6 +125,7 @@ const MyGenerator = class extends Generator {
     this.log('\n(4) writing...')
     this.log(`this.destinationRoot(): ${this.destinationRoot()}`)
     this.log(`this.appname: ${this.appname}`)
+    // this.log('this:', JSON.stringify(this, null, 2))
     this.log('this.answers:', JSON.stringify(this.answers, null, 2))
 
     const {
@@ -122,9 +134,11 @@ const MyGenerator = class extends Generator {
       appNameCapitalizeFirst,
       appDescription,
       privateRepository,
+      githubUsername,
+      firstLastName,
+      githubUsername,
       license,
       keywords,
-      githubUsername,
     } = this.answers
 
     // package.json
@@ -132,13 +146,19 @@ const MyGenerator = class extends Generator {
       appNameKebabCase,
       appDescription,
       privateRepository,
+      githubUsername,
+      firstLastName,
+      githubUsername,
       license,
       keywords,
     })
 
     // LICENSE
     if (license) {
-      this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { currentYear: this.currentYear })
+      this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), {
+        currentYear: this.currentYear,
+        firstLastName,
+      })
     }
 
     // README.md and assets
@@ -181,6 +201,12 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   install() {
     this.log('\n(7) install...')
+    
+    this.log('I will install dependencies:', dependencies)
+    this.log('I will install devDependencies:', devDependencies)
+    this.yarnInstall(dependencies, { dev: false })
+    this.yarnInstall(devDependencies, { dev: true })
+    
   }
 
   ////////////////////////////////////////

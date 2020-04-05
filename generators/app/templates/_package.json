@@ -4,11 +4,11 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ilariaventurini/<%= appNameKebabCase %>.git"
+    "url": "https://github.com/<%= githubUsername %>/<%= appNameKebabCase %>.git"
   },
   "author": {
-    "name": "Ilaria Venturini",
-    "email": "venturini.ila@gmail.com"
+    "name": "<%= firstLastName %>",
+    "email": "<%= githubUsername %>"
   },
   "private": <%= privateRepository %>,
   <% if(license) { _%>
