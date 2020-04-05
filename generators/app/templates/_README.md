@@ -16,9 +16,9 @@
   </a>
 
   <!-- code coverage -->
-  <a href="https://codecov.io/gh/ilariaventurini/<%= appNameKebabCase %>">
+  <a href="https://codecov.io/gh/<%= githubUsername %>/<%= appNameKebabCase %>">
     <img alt="coverage"
-      src="https://codecov.io/gh/ilariaventurini/<%= appNameKebabCase %>/branch/master/graph/badge.svg?token=Z1RP613QQC&style=flat-square">
+      src="https://codecov.io/gh/<%= githubUsername %>/<%= appNameKebabCase %>/branch/master/graph/badge.svg?token=Z1RP613QQC&style=flat-square">
   </a>
 </p>
 
@@ -60,8 +60,8 @@ This theme is still in progress. Anyway, if you open an issue (or a PR), I will 
 
 ## License
 
-[MIT](https://github.com/ilariaventurini/<%= appNameKebabCase %>/blob/master/LICENSE) © [Ilaria
-Venturini](https://github.com/ilariaventurini)
+[MIT](https://github.com/<%= githubUsername %>/<%= appNameKebabCase %>/blob/master/LICENSE) © [Ilaria
+Venturini](https://github.com/<%= githubUsername %>)
 
 <!--
 TODO:

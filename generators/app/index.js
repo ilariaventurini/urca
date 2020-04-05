@@ -167,6 +167,7 @@ const MyGenerator = class extends Generator {
       appNameKebabCase,
       appNameCapitalizeFirst,
       appDescription,
+      githubUsername,
     })
     this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 
