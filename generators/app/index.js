@@ -108,6 +108,7 @@ const MyGenerator = class extends Generator {
       this.answers.appName = this.appname
       this.answers.appNameCapitalizeFirst = capitalizeFirstCase(this.appname)
       this.answers.keywords = formatKeywords(answers.keywords)
+      this.answers.repositoryUrl = `https://${this.answers.githubUsername}@github.com/${this.answers.githubUsername}/${this.answers.appNameKebabCase}.git`
     })
   }
 
@@ -136,7 +137,6 @@ const MyGenerator = class extends Generator {
       privateRepository,
       githubUsername,
       firstLastName,
-      githubUsername,
       license,
       keywords,
     } = this.answers
@@ -214,6 +214,17 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   end() {
     this.log('\n(8) end...')
+
+    const { githubEmail, repositoryUrl } = this.answers
+
+    // Git initialization
+    this.spawnCommandSync('git', ['init'])
+    this.spawnCommandSync('git', ['config', 'user.email', githubEmail])
+    this.spawnCommandSync('git', ['add', '--all'])
+    this.spawnCommandSync('git', ['commit', '-m', '"🚀 First commit"'])
+    this.spawnCommandSync('git', ['remote', 'add', 'origin', repositoryUrl])
+    this.spawnCommandSync('git', ['push', '-u', 'origin', 'master'])
+
     this.log(`Application ${this.appname} generated successfully. Bye :)`)
   }
 }
