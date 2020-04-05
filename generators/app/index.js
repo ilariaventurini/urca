@@ -25,6 +25,7 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   initializing() {
     this.log('\n(1) initializing...')
+    this.licenseYear = new Date().getFullYear()
   }
 
   ////////////////////////////////////////
@@ -123,6 +124,9 @@ const MyGenerator = class extends Generator {
       privateRepository,
       license,
     })
+
+    // LICENSE
+    this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { licenseYear: this.licenseYear })
 
     // README.md and assets
     this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
