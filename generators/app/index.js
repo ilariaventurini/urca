@@ -171,7 +171,7 @@ const MyGenerator = class extends Generator {
     this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 
     // git
-    this.fs.copyTpl(this.templatePath('gitignore'), this.destinationPath('.gitignore'))
+    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'))
 
     // lib functions
     this.fs.copyTpl(this.templatePath('src/_index.ts'), this.destinationPath('src/index.ts'))
