@@ -137,7 +137,9 @@ const MyGenerator = class extends Generator {
     })
 
     // LICENSE
-    this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { currentYear: this.currentYear })
+    if (license) {
+      this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), { currentYear: this.currentYear })
+    }
 
     // README.md and assets
     this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
