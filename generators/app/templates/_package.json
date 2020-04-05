@@ -14,7 +14,7 @@
   <% if(license) { _%>
 "license": "MIT",
   <% } _%>
-"keywords": [],
+"keywords": <%- JSON.stringify(keywords) %>,
   "scripts": {
     "compile": "tsc"
   },

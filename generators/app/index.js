@@ -4,7 +4,7 @@
 const Generator = require('yeoman-generator')
 const _ = require('lodash')
 
-const { getCurrentYear, kebabCase, capitalizeFirstCase } = require('./utils')
+const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = require('./utils')
 
 // All that this code is doing is creating this generator object and exporting it out,
 // Yeoman will actually retrieve the exported object and run it.
@@ -52,12 +52,16 @@ const MyGenerator = class extends Generator {
         message: `What is your app's name? Use kebab case format`,
         default: kebabCase(this.appname), // Default to current folder name
         filter: kebabCase, // Transform input to kebab case
-        validate: str => str.length > 0
+        validate: (str) => str.length > 0,
       },
       {
         type: 'input',
         name: `appDescription`,
         message: `Insert a description`,
+      },
+      {
+        name: 'keywords',
+        message: 'Throw here some keywords of your project (comma separated)',
       },
       {
         type: 'confirm',
@@ -92,6 +96,7 @@ const MyGenerator = class extends Generator {
       this.answers = answers
       this.answers.appName = this.appname
       this.answers.appNameCapitalizeFirst = capitalizeFirstCase(this.appname)
+      this.answers.keywords = formatKeywords(answers.keywords)
     })
   }
 
@@ -118,6 +123,7 @@ const MyGenerator = class extends Generator {
       appDescription,
       privateRepository,
       license,
+      keywords,
       githubUsername,
     } = this.answers
 
@@ -127,6 +133,7 @@ const MyGenerator = class extends Generator {
       appDescription,
       privateRepository,
       license,
+      keywords,
     })
 
     // LICENSE
