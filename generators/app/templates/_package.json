@@ -18,7 +18,7 @@
   "scripts": {
     "compile": "tsc",
     "lint": "",
-    "prettier": ""
+    "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx}"
   },
   "devDependencies": {},
   "dependencies": {}
