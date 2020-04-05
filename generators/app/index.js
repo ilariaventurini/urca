@@ -149,20 +149,27 @@ const MyGenerator = class extends Generator {
     } = this.answers
 
     // package.json
-    this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
-      appNameKebabCase,
-      appDescription,
-      privateRepository,
-      githubUsername,
-      firstLastName,
-      githubEmail,
-      license,
-      keywords,
-    })
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      {
+        appNameKebabCase,
+        appDescription,
+        privateRepository,
+        githubUsername,
+        firstLastName,
+        githubEmail,
+        license,
+        keywords,
+      }
+    )
 
     // TypeScript
     if (useTypescript) {
-      this.fs.copyTpl(this.templatePath('_tsconfig.json'), this.destinationPath('tsconfig.json'))
+      this.fs.copyTpl(
+        this.templatePath('_tsconfig.json'),
+        this.destinationPath('tsconfig.json')
+      )
     }
 
     // LICENSE
@@ -181,17 +188,40 @@ const MyGenerator = class extends Generator {
       appDescription,
       githubUsername,
     })
-    this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
+    this.fs.copyTpl(
+      this.templatePath('assets/_logo.png'),
+      this.destinationPath('assets/logo.png')
+    )
 
     // git
     this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'))
-    
+
+    // eslint
+    // I prefer using a JavaScript file (.eslintrc.js) for the .eslintrc file
+    // instead of a JSON file (.eslintrc) as it supports comments that can be used to better describe rules.
+    this.fs.copyTpl(
+      this.templatePath('_eslintrc.js'),
+      this.destinationPath('.eslintrc.js'),
+      { useTypescript }
+    )
+
     // prettier
-    this.fs.copyTpl(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'))
-    this.fs.copyTpl(this.templatePath('_prettierignore'), this.destinationPath('.prettierignore'))
+    // I prefer using a JavaScript file (.prettierrc.js) for the .prettierrc file
+    // instead of a JSON file (.prettierrc) as it supports comments that can be used to better describe rules.
+    this.fs.copyTpl(
+      this.templatePath('_prettierrc.js'),
+      this.destinationPath('.prettierrc.js')
+    )
+    this.fs.copyTpl(
+      this.templatePath('_prettierignore'),
+      this.destinationPath('.prettierignore')
+    )
 
     // lib functions
-    this.fs.copyTpl(this.templatePath('src/_index.ts'), this.destinationPath('src/index.ts'))
+    this.fs.copyTpl(
+      this.templatePath('src/_index.ts'),
+      this.destinationPath('src/index.ts')
+    )
 
     this.fs.copyTpl(
       this.templatePath('src/lib/_hello.ts'),
@@ -231,8 +261,19 @@ const MyGenerator = class extends Generator {
         : []),
     ]
     const devDependencies = [
+      'eslint',
       'prettier',
-      ...(useTypescript ? ['typescript', '@types/lodash', '@types/d3'] : []),
+      'eslint-config-prettier', // Disables ESLint rules that might conflict with prettier
+      'eslint-plugin-prettier', // Runs prettier as an ESLint rule
+      ...(useTypescript
+        ? [
+            'typescript',
+            '@types/lodash',
+            '@types/d3',
+            '@typescript-eslint/parser', // The parser that will allow ESLint to lint TypeScript code
+            '@typescript-eslint/eslint-plugin', // A plugin that contains a bunch of ESLint rules that are TypeScript specific
+          ]
+        : []),
     ]
 
     this.log('I will install dependencies:', dependencies)

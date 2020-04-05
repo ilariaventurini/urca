@@ -17,8 +17,8 @@
 "keywords": <%- JSON.stringify(keywords) %>,
   "scripts": {
     "compile": "tsc",
-    "lint": "",
-    "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx}"
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
+    "prettier": "prettier src/**/*.{js,jsx,ts,tsx} --write"
   },
   "devDependencies": {},
   "dependencies": {}
