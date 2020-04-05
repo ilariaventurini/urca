@@ -8,7 +8,7 @@
   },
   "author": {
     "name": "<%= firstLastName %>",
-    "email": "<%= githubUsername %>"
+    "email": "<%= githubEmail %>"
   },
   "private": <%= privateRepository %>,
   <% if(license) { _%>
@@ -18,7 +18,7 @@
   "scripts": {
     "compile": "tsc",
     "lint": "",
-    "prettier": "",
+    "prettier": ""
   },
   "devDependencies": {},
   "dependencies": {}

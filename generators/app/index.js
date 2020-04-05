@@ -5,7 +5,6 @@ const Generator = require('yeoman-generator')
 const _ = require('lodash')
 
 const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = require('./utils')
-const { dependencies, devDependencies } = require('./constants')
 
 // All that this code is doing is creating this generator object and exporting it out,
 // Yeoman will actually retrieve the exported object and run it.
@@ -77,6 +76,12 @@ const MyGenerator = class extends Generator {
         default: true,
       },
       {
+        type: 'confirm',
+        name: 'useTypescript',
+        message: `Do you want use TypeScript?`,
+        default: true,
+      },
+      {
         type: 'input',
         name: `githubUsername`,
         message: `Insert GitHub username`,
@@ -136,9 +141,11 @@ const MyGenerator = class extends Generator {
       appDescription,
       privateRepository,
       githubUsername,
+      githubEmail,
       firstLastName,
       license,
       keywords,
+      useTypescript,
     } = this.answers
 
     // package.json
@@ -148,10 +155,15 @@ const MyGenerator = class extends Generator {
       privateRepository,
       githubUsername,
       firstLastName,
-      githubUsername,
+      githubEmail,
       license,
       keywords,
     })
+
+    // TypeScript
+    if (useTypescript) {
+      this.fs.copyTpl(this.templatePath('_tsconfig.json'), this.destinationPath('tsconfig.json'))
+    }
 
     // LICENSE
     if (license) {
@@ -206,7 +218,23 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   install() {
     this.log('\n(7) install...')
-    
+
+    const { useTypescript } = this.answers
+
+    const dependencies = [
+      'lodash',
+      'd3',
+      'tachyons',
+      'tachyons-extra',
+      ...(useTypescript
+        ? ['@types/lodash', '@types/d3']
+        : []),
+    ]
+    const devDependencies = [
+      'prettier',
+      ...(useTypescript ? ['typescript', '@types/lodash', '@types/d3'] : []),
+    ]
+
     this.log('I will install dependencies:', dependencies)
     this.log('I will install devDependencies:', devDependencies)
     this.yarnInstall(dependencies, { dev: false })
