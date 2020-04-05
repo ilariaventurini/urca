@@ -16,7 +16,9 @@
   <% } _%>
 "keywords": <%- JSON.stringify(keywords) %>,
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc",
+    "lint": "",
+    "prettier": "",
   },
   "devDependencies": {},
   "dependencies": {}

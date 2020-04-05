@@ -173,6 +173,10 @@ const MyGenerator = class extends Generator {
 
     // git
     this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'))
+    
+    // prettier
+    this.fs.copyTpl(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'))
+    this.fs.copyTpl(this.templatePath('_prettierignore'), this.destinationPath('.prettierignore'))
 
     // lib functions
     this.fs.copyTpl(this.templatePath('src/_index.ts'), this.destinationPath('src/index.ts'))
