@@ -13,7 +13,7 @@ const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = requi
 // and run them one at a time
 const MyGenerator = class extends Generator {
   ////////////////////////////////////////
-  // (0) constructor
+  // (0) Constructor
   ////////////////////////////////////////
   constructor(args, opts) {
     super(args, opts)
@@ -23,7 +23,8 @@ const MyGenerator = class extends Generator {
   }
 
   ////////////////////////////////////////
-  // (1) initializing - Your initialization methods (checking current project state, getting configs, etc)
+  // (1) Initializing
+  // Your initialization methods(checking current project state, getting configs, etc)
   ////////////////////////////////////////
   initializing() {
     this.log('\n(1) initializing...')
@@ -32,11 +33,17 @@ const MyGenerator = class extends Generator {
   }
 
   ////////////////////////////////////////
-  // (2) prompting - Where you prompt users for options (where you’d call this.prompt())
+  // (2) Prompting
+  // Where you prompt users for options (where you’d call this.prompt())
   ////////////////////////////////////////
   // Ask for user input
   async prompting() {
     this.log('\n(2) prompting...')
+
+    this.log(
+      `\nNB: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.\n`
+    )
+
     // Yeoman tries to run your methods in the order that they are defined, but if you run any async code,
     // the function will exit before the actual work gets completed and Yeoman will start the next function early.
     // To get around this, you can call the async method, which will return a callback and then Yeoman will wait
@@ -108,7 +115,7 @@ const MyGenerator = class extends Generator {
       // },
     ]
 
-    return this.prompt(prompts).then(answers => {
+    return this.prompt(prompts).then((answers) => {
       this.answers = answers
       this.answers.appName = this.appname
       this.answers.appNameCapitalizeFirst = capitalizeFirstCase(this.appname)
@@ -118,14 +125,16 @@ const MyGenerator = class extends Generator {
   }
 
   ////////////////////////////////////////
-  // (3) configuring - Saving configurations and configure the project (creating .editorconfig files and other metadata files)
+  // (3) Configuring
+  // Saving configurations and configure the project(creating .editorconfig files and other metadata files)
   ////////////////////////////////////////
   configuring() {
     this.log('\n(3) configuring...')
   }
 
   ////////////////////////////////////////
-  // (5) writing - Where you write the generator specific files (routes, controllers, etc)
+  // (5) Writing
+  // Where you write the generator specific files(routes, controllers, etc)
   ////////////////////////////////////////
   writing() {
     this.log('\n(4) writing...')
@@ -149,27 +158,20 @@ const MyGenerator = class extends Generator {
     } = this.answers
 
     // package.json
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'),
-      {
-        appNameKebabCase,
-        appDescription,
-        privateRepository,
-        githubUsername,
-        firstLastName,
-        githubEmail,
-        license,
-        keywords,
-      }
-    )
+    this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
+      appNameKebabCase,
+      appDescription,
+      privateRepository,
+      githubUsername,
+      firstLastName,
+      githubEmail,
+      license,
+      keywords,
+    })
 
     // TypeScript
     if (useTypescript) {
-      this.fs.copyTpl(
-        this.templatePath('_tsconfig.json'),
-        this.destinationPath('tsconfig.json')
-      )
+      this.fs.copyTpl(this.templatePath('_tsconfig.json'), this.destinationPath('tsconfig.json'))
     }
 
     // LICENSE
@@ -188,10 +190,7 @@ const MyGenerator = class extends Generator {
       appDescription,
       githubUsername,
     })
-    this.fs.copyTpl(
-      this.templatePath('assets/_logo.png'),
-      this.destinationPath('assets/logo.png')
-    )
+    this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 
     // git
     this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'))
@@ -199,29 +198,18 @@ const MyGenerator = class extends Generator {
     // eslint
     // I prefer using a JavaScript file (.eslintrc.js) for the .eslintrc file
     // instead of a JSON file (.eslintrc) as it supports comments that can be used to better describe rules.
-    this.fs.copyTpl(
-      this.templatePath('_eslintrc.js'),
-      this.destinationPath('.eslintrc.js'),
-      { useTypescript }
-    )
+    this.fs.copyTpl(this.templatePath('_eslintrc.js'), this.destinationPath('.eslintrc.js'), {
+      useTypescript,
+    })
 
     // prettier
     // I prefer using a JavaScript file (.prettierrc.js) for the .prettierrc file
     // instead of a JSON file (.prettierrc) as it supports comments that can be used to better describe rules.
-    this.fs.copyTpl(
-      this.templatePath('_prettierrc.js'),
-      this.destinationPath('.prettierrc.js')
-    )
-    this.fs.copyTpl(
-      this.templatePath('_prettierignore'),
-      this.destinationPath('.prettierignore')
-    )
+    this.fs.copyTpl(this.templatePath('_prettierrc.js'), this.destinationPath('.prettierrc.js'))
+    this.fs.copyTpl(this.templatePath('_prettierignore'), this.destinationPath('.prettierignore'))
 
     // lib functions
-    this.fs.copyTpl(
-      this.templatePath('src/_index.ts'),
-      this.destinationPath('src/index.ts')
-    )
+    this.fs.copyTpl(this.templatePath('src/_index.ts'), this.destinationPath('src/index.ts'))
 
     this.fs.copyTpl(
       this.templatePath('src/lib/_hello.ts'),
@@ -230,21 +218,24 @@ const MyGenerator = class extends Generator {
   }
 
   ////////////////////////////////////////
-  // (4) default - If the method name doesn’t match a priority, it will be pushed to this group.
+  // (4) Default
+  // If the method name doesn’t match a priority, it will be pushed to this group.
   ////////////////////////////////////////
   default() {
     this.log('\n(5) default...')
   }
 
   ////////////////////////////////////////
-  // (6) conflicts - Where conflicts are handled (used internally)
+  // (6) Conflicts
+  // Where conflicts are handled(used internally)
   ////////////////////////////////////////
   conflicts() {
     this.log('\n(6) conflicts...')
   }
 
   ////////////////////////////////////////
-  // (7) install - Where installations are run (npm, bower)
+  // (7) Install
+  // Where installations are run (npm, bower)
   ////////////////////////////////////////
   install() {
     this.log('\n(7) install...')
@@ -284,7 +275,8 @@ const MyGenerator = class extends Generator {
   }
 
   ////////////////////////////////////////
-  // (8) end - Called last, cleanup, say good bye, etc
+  // (8) End
+  // Called last, cleanup, say goodbye, etc
   ////////////////////////////////////////
   end() {
     this.log('\n(8) end...')

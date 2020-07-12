@@ -56,7 +56,7 @@ A demo page is avaible, you can run it using `yarn start:demo`.
 
 ## 🐛 Issues & contributing
 
-This theme is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
+This project is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
 
 ## License
 

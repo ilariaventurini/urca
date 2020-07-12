@@ -4,7 +4,7 @@
 
   <h1>Urca generator</h1>
 
-  A Yeoman generator to author TypeScript libraries.
+A Yeoman generator to author TypeScript libraries.
 
 </div>
 
@@ -58,7 +58,7 @@ yo urca
 
 ## 🐛 Issues & contributing
 
-This theme is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
+This project is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
 
 ## License
 
