@@ -5,6 +5,11 @@ const Generator = require('yeoman-generator')
 const _ = require('lodash')
 
 const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = require('./utils')
+const {
+  dependenciesToAskUser,
+  dependenciesToInstall,
+  devDependenciesWithTypesToInstall,
+} = require('./dependencies-utils')
 
 // All that this code is doing is creating this generator object and exporting it out,
 // Yeoman will actually retrieve the exported object and run it.
@@ -106,13 +111,13 @@ const MyGenerator = class extends Generator {
         message: `Insert first name and last name`,
         store: true,
       },
-      // {
-      //   type: 'list',
-      //   name: 'dependencies',
-      //   message: `What dependencies you want install?`,
-      //   choices: DEPENDENCIES,
-      //   default: ['lodash', 'd3'],
-      // },
+      {
+        type: 'checkbox',
+        name: 'dependencies',
+        message: `Which dependencies you want install?`,
+        choices: dependenciesToAskUser.map((d) => d.name),
+        default: dependenciesToAskUser.filter((d) => d.isDefault).map((d) => d.name),
+      },
     ]
 
     return this.prompt(prompts).then((answers) => {
@@ -240,38 +245,18 @@ const MyGenerator = class extends Generator {
   install() {
     this.log('\n(7) install...')
 
-    const { useTypescript } = this.answers
+    const { useTypescript, dependencies } = this.answers
 
-    const dependencies = [
-      'lodash',
-      'd3',
-      'tachyons',
-      'tachyons-extra',
-      ...(useTypescript
-        ? ['@types/lodash', '@types/d3']
-        : []),
-    ]
-    const devDependencies = [
-      'eslint',
-      'prettier',
-      'eslint-config-prettier', // Disables ESLint rules that might conflict with prettier
-      'eslint-plugin-prettier', // Runs prettier as an ESLint rule
-      ...(useTypescript
-        ? [
-            'typescript',
-            '@types/lodash',
-            '@types/d3',
-            '@typescript-eslint/parser', // The parser that will allow ESLint to lint TypeScript code
-            '@typescript-eslint/eslint-plugin', // A plugin that contains a bunch of ESLint rules that are TypeScript specific
-          ]
-        : []),
-    ]
+    const dependenciesNamesToInstall = dependenciesToInstall(dependencies, useTypescript)
+    const devDependenciesNamesToInstall = devDependenciesWithTypesToInstall(
+      dependencies,
+      useTypescript
+    )
 
-    this.log('I will install dependencies:', dependencies)
-    this.log('I will install devDependencies:', devDependencies)
-    this.yarnInstall(dependencies, { dev: false })
-    this.yarnInstall(devDependencies, { dev: true })
-    
+    this.log('I will install dependencies:', dependenciesNamesToInstall)
+    this.log('I will install dev dependencies:', devDependenciesNamesToInstall)
+    this.yarnInstall(dependenciesNamesToInstall, { dev: false })
+    this.yarnInstall(devDependenciesNamesToInstall, { dev: true })
   }
 
   ////////////////////////////////////////
