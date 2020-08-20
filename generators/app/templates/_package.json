@@ -16,7 +16,11 @@
   <% } _%>
 "keywords": <%- JSON.stringify(keywords) %>,
   "scripts": {
-    "compile": "tsc",
+    "compile": "tsc --outDir dist",
+    "compile-watch": "tsc -w --outDir dist",
+    "prepublish": "rm -rf dist/ && tsc --outDir dist",
+    "start:demo": "parcel demo/index.html",
+    "build": "parcel build demo/index.html --out-dir demo-build",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
     "prettier": "prettier src/**/*.{js,jsx,ts,tsx} --write"
   },

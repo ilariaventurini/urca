@@ -1,3 +1,9 @@
+<% if (useTypescript) { %>
 export function hello(name: string): string {
-  return `Hello ${name}!`
+  return `Ciao ${name}!`
 }
+<% } else { %>
+export function hello(name) {
+  return `Ciao ${name}!`
+}
+<% } %>

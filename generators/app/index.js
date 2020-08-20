@@ -3,7 +3,6 @@
 // Require dependencies
 const Generator = require('yeoman-generator')
 const _ = require('lodash')
-
 const { getCurrentYear, kebabCase, capitalizeFirstCase, formatKeywords } = require('./utils')
 const {
   dependenciesToAskUser,
@@ -29,7 +28,7 @@ const MyGenerator = class extends Generator {
 
   ////////////////////////////////////////
   // (1) Initializing
-  // Your initialization methods(checking current project state, getting configs, etc)
+  // Your initialization methods (checking current project state, getting configs, etc)
   ////////////////////////////////////////
   initializing() {
     this.log('\n(1) initializing...')
@@ -48,6 +47,7 @@ const MyGenerator = class extends Generator {
     this.log(
       `\nNB: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.\n`
     )
+    this.log(`\nNB: Remember to create a GitHub repository with the same name of your app.\n`)
 
     // Yeoman tries to run your methods in the order that they are defined, but if you run any async code,
     // the function will exit before the actual work gets completed and Yeoman will start the next function early.
@@ -61,7 +61,7 @@ const MyGenerator = class extends Generator {
       {
         type: 'input',
         name: `appNameKebabCase`,
-        message: `What is your app's name? Use kebab case format`,
+        message: `What is your app's name? Use kebab-case-format`,
         default: kebabCase(this.appname), // Default to current folder name
         filter: kebabCase, // Transform input to kebab case
         validate: (str) => str.length > 0,
@@ -79,12 +79,6 @@ const MyGenerator = class extends Generator {
         type: 'confirm',
         name: 'privateRepository',
         message: `Would you like to create a private repository?`,
-        default: true,
-      },
-      {
-        type: 'confirm',
-        name: 'license',
-        message: `Do you want a MIT license?`,
         default: true,
       },
       {
@@ -139,7 +133,7 @@ const MyGenerator = class extends Generator {
 
   ////////////////////////////////////////
   // (5) Writing
-  // Where you write the generator specific files(routes, controllers, etc)
+  // Where you write the generator specific files (routes, controllers, etc)
   ////////////////////////////////////////
   writing() {
     this.log('\n(4) writing...')
@@ -180,22 +174,20 @@ const MyGenerator = class extends Generator {
     }
 
     // LICENSE
-    if (license) {
-      this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), {
-        currentYear: this.currentYear,
-        firstLastName,
-      })
-    }
+    this.fs.copyTpl(this.templatePath('_LICENSE'), this.destinationPath('LICENSE'), {
+      currentYear: this.currentYear,
+      firstLastName,
+    })
 
-    // README.md and assets
+    // README.md
     this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
       appName,
       appNameKebabCase,
       appNameCapitalizeFirst,
       appDescription,
       githubUsername,
+      firstLastName,
     })
-    this.fs.copyTpl(this.templatePath('assets/_logo.png'), this.destinationPath('assets/logo.png'))
 
     // git
     this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'))
@@ -214,11 +206,30 @@ const MyGenerator = class extends Generator {
     this.fs.copyTpl(this.templatePath('_prettierignore'), this.destinationPath('.prettierignore'))
 
     // lib functions
-    this.fs.copyTpl(this.templatePath('src/_index.ts'), this.destinationPath('src/index.ts'))
-
     this.fs.copyTpl(
-      this.templatePath('src/lib/_hello.ts'),
-      this.destinationPath('src/lib/hello.ts')
+      this.templatePath(`src/_index.ts`),
+      this.destinationPath(`src/index.${useTypescript ? 'ts' : 'js'}`)
+    )
+    this.fs.copyTpl(
+      this.templatePath(`src/lib/_hello.ts`),
+      this.destinationPath(`src/lib/hello.${useTypescript ? 'ts' : 'js'}`),
+      { useTypescript }
+    )
+
+    // demo
+    this.fs.copyTpl(
+      this.templatePath('demo/_index_html.ejs'),
+      this.destinationPath('demo/index.html'),
+      {
+        useTypescript,
+        appName,
+      }
+    )
+    this.fs.copyTpl(this.templatePath('demo/_style.css'), this.destinationPath('demo/style.css'))
+    this.fs.copyTpl(
+      this.templatePath('demo/_index.ts'),
+      this.destinationPath(`demo/index.${useTypescript ? 'ts' : 'js'}`),
+      { useTypescript }
     )
   }
 
@@ -240,7 +251,7 @@ const MyGenerator = class extends Generator {
 
   ////////////////////////////////////////
   // (7) Install
-  // Where installations are run (npm, bower)
+  // Where installations are run (yarn)
   ////////////////////////////////////////
   install() {
     this.log('\n(7) install...')
@@ -266,16 +277,19 @@ const MyGenerator = class extends Generator {
   end() {
     this.log('\n(8) end...')
 
-    const { githubEmail, repositoryUrl } = this.answers
+    const { githubEmail, repositoryUrl, appNameKebabCase } = this.answers
 
     // Git initialization
     this.spawnCommandSync('git', ['init'])
     this.spawnCommandSync('git', ['config', 'user.email', githubEmail])
     this.spawnCommandSync('git', ['add', '--all'])
-    this.spawnCommandSync('git', ['commit', '-m', '"🚀 First commit"'])
+    this.spawnCommandSync('git', ['commit', '-m', '🚀 First commit'])
     this.spawnCommandSync('git', ['remote', 'add', 'origin', repositoryUrl])
     this.spawnCommandSync('git', ['push', '-u', 'origin', 'master'])
 
+    this.log(
+      `\nIf you haven't done this before, create a GitHub repository named '${appNameKebabCase}'.\n`
+    )
     this.log(`Application ${this.appname} generated successfully. Bye :)`)
   }
 }
