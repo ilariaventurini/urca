@@ -1,7 +1,5 @@
 <div align="center" style="text-align: center;">
 
-![logo](./assets/logo.png)
-
   <h1><%= appNameCapitalizeFirst %></h1>
 
 <%= appDescription %>
@@ -52,7 +50,7 @@ Lorem ipsum dolor sit amet.
 
 ## 🙈 Demo page
 
-A demo page is avaible, you can run it using `yarn start:demo`.
+A [demo page]() is available.
 
 ## 🐛 Issues & contributing
 
@@ -60,10 +58,4 @@ This project is still in progress. Anyway, if you open an issue (or a PR), I wil
 
 ## License
 
-[MIT](https://github.com/<%= githubUsername %>/<%= appNameKebabCase %>/blob/master/LICENSE) © [Ilaria
-Venturini](https://github.com/<%= githubUsername %>)
-
-<!--
-TODO:
-- [ ]
--->
+[MIT](https://github.com/<%= githubUsername %>/<%= appNameKebabCase %>/blob/master/LICENSE) © [<%= firstLastName %>](https://github.com/<%= githubUsername %>)

@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <link rel="icon" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <title><%= appName %></title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <% if (useTypescript) { %>
+    <script src="./index.ts"></script>
+    <% } else { %>
+    <script src="./index.js"></script>
+    <% } %>
+  </body>
+</html>

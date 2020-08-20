@@ -30,10 +30,17 @@ const dependecies = [
     isMandatory: true,
   },
   {
-    name: 'eslint-config-prettier', // // Disables ESLint rules that might conflict with prettier
+    name: 'eslint-config-prettier', // Disables ESLint rules that might conflict with prettier
     isDev: true,
     types: '@typescript-eslint/eslint-plugin', // A plugin that contains a bunch of ESLint rules that are TypeScript specific
     isDefault: false,
+    isMandatory: true,
+  },
+  {
+    name: 'parcel', // Bundler
+    isDev: false,
+    types: '',
+    isDefault: true,
     isMandatory: true,
   },
 ]
@@ -51,7 +58,7 @@ const dependenciesToInstall = (choosenDependenciesNamesByUser, useTypescript) =>
     .filter((d) => choosenDependenciesNamesByUser.includes(d.name) && !d.isDev)
     .map((d) => d.name)
 
-// dev dependencies names hoosen by user
+// dev dependencies names choosen by user
 const devDependenciesToInstall = (choosenDependenciesNamesByUser) =>
   dependenciesToAskUser
     .filter((d) => choosenDependenciesNamesByUser.includes(d.name) && d.isDev)
