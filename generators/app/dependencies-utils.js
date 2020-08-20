@@ -43,6 +43,35 @@ const dependecies = [
     isDefault: true,
     isMandatory: true,
   },
+  // to use Jest, Babel is necessary (even if we are using Parcel)
+  {
+    name: 'jest', // test library
+    isDev: true,
+    types: '',
+    isDefault: true,
+    isMandatory: true,
+  },
+  {
+    name: 'babel-jest',
+    isDev: true,
+    types: '',
+    isDefault: true,
+    isMandatory: true,
+  },
+  {
+    name: '@babel/core',
+    isDev: true,
+    types: '',
+    isDefault: true,
+    isMandatory: true,
+  },
+  {
+    name: '@babel/preset-env',
+    isDev: true,
+    types: '',
+    isDefault: true,
+    isMandatory: true,
+  },
 ]
 
 ///////////////////////////////

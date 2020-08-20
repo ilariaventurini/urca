@@ -205,6 +205,15 @@ const MyGenerator = class extends Generator {
     this.fs.copyTpl(this.templatePath('_prettierrc.js'), this.destinationPath('.prettierrc.js'))
     this.fs.copyTpl(this.templatePath('_prettierignore'), this.destinationPath('.prettierignore'))
 
+    // jest
+    this.fs.copyTpl(this.templatePath('_jestconfig.json'), this.destinationPath('jestconfig.json'))
+    this.fs.copyTpl(
+      this.templatePath('test/_hello.test.ts'),
+      this.destinationPath(`test/hello.test.${useTypescript ? 'ts' : 'js'}`)
+    )
+    // Babel for Jest
+    this.fs.copyTpl(this.templatePath('_babelrc'), this.destinationPath('.babelrc'))
+
     // lib functions
     this.fs.copyTpl(
       this.templatePath(`src/_index.ts`),
