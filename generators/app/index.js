@@ -21,9 +21,7 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   constructor(args, opts) {
     super(args, opts)
-    this.log('\n(0) constructor...')
-    // this.log(`args: ${args}`)
-    // this.log(`opts: ${JSON.stringify(opts, null, 2)}`)
+    // this.log('\n(0) constructor...')
   }
 
   ////////////////////////////////////////
@@ -31,8 +29,7 @@ const MyGenerator = class extends Generator {
   // Your initialization methods (checking current project state, getting configs, etc)
   ////////////////////////////////////////
   initializing() {
-    this.log('\n(1) initializing...')
-    // this.log('this:', JSON.stringify(this, null, 2))
+    // this.log('\n(1) initializing...')
     this.currentYear = getCurrentYear()
   }
 
@@ -42,12 +39,12 @@ const MyGenerator = class extends Generator {
   ////////////////////////////////////////
   // Ask for user input
   async prompting() {
-    this.log('\n(2) prompting...')
+    // this.log('\n(2) prompting...')
 
     this.log(
-      `\nNB: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.\n`
+      `\nNote: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.\n`
     )
-    this.log(`\nNB: Remember to create a GitHub repository with the same name of your app.\n`)
+    this.log(`\nNote: Remember to create a GitHub repository with the same name of your app.\n`)
 
     // Yeoman tries to run your methods in the order that they are defined, but if you run any async code,
     // the function will exit before the actual work gets completed and Yeoman will start the next function early.
@@ -128,7 +125,7 @@ const MyGenerator = class extends Generator {
   // Saving configurations and configure the project(creating .editorconfig files and other metadata files)
   ////////////////////////////////////////
   configuring() {
-    this.log('\n(3) configuring...')
+    // this.log('\n(3) configuring...')
   }
 
   ////////////////////////////////////////
@@ -136,12 +133,7 @@ const MyGenerator = class extends Generator {
   // Where you write the generator specific files (routes, controllers, etc)
   ////////////////////////////////////////
   writing() {
-    this.log('\n(4) writing...')
-    this.log(`this.destinationRoot(): ${this.destinationRoot()}`)
-    this.log(`this.appname: ${this.appname}`)
-    // this.log('this:', JSON.stringify(this, null, 2))
-    this.log('this.answers:', JSON.stringify(this.answers, null, 2))
-
+    // this.log('\n(4) writing...')
     const {
       appName,
       appNameKebabCase,
@@ -238,7 +230,7 @@ const MyGenerator = class extends Generator {
   // If the method name doesn’t match a priority, it will be pushed to this group.
   ////////////////////////////////////////
   default() {
-    this.log('\n(5) default...')
+    // this.log('\n(5) default...')
   }
 
   ////////////////////////////////////////
@@ -246,7 +238,7 @@ const MyGenerator = class extends Generator {
   // Where conflicts are handled(used internally)
   ////////////////////////////////////////
   conflicts() {
-    this.log('\n(6) conflicts...')
+    // this.log('\n(6) conflicts...')
   }
 
   ////////////////////////////////////////
@@ -254,7 +246,7 @@ const MyGenerator = class extends Generator {
   // Where installations are run (yarn)
   ////////////////////////////////////////
   install() {
-    this.log('\n(7) install...')
+    // this.log('\n(7) install...')
 
     const { useTypescript, dependencies } = this.answers
 
@@ -264,8 +256,6 @@ const MyGenerator = class extends Generator {
       useTypescript
     )
 
-    this.log('I will install dependencies:', dependenciesNamesToInstall)
-    this.log('I will install dev dependencies:', devDependenciesNamesToInstall)
     this.yarnInstall(dependenciesNamesToInstall, { dev: false })
     this.yarnInstall(devDependenciesNamesToInstall, { dev: true })
   }
@@ -275,7 +265,7 @@ const MyGenerator = class extends Generator {
   // Called last, cleanup, say goodbye, etc
   ////////////////////////////////////////
   end() {
-    this.log('\n(8) end...')
+    // this.log('\n(8) end...')
 
     const { githubEmail, repositoryUrl, appNameKebabCase } = this.answers
 
@@ -290,7 +280,7 @@ const MyGenerator = class extends Generator {
     this.log(
       `\nIf you haven't done this before, create a GitHub repository named '${appNameKebabCase}'.\n`
     )
-    this.log(`Application ${this.appname} generated successfully. Bye :)`)
+    this.log(`App '${this.appname}' generated successfully. Bye :)`)
   }
 }
 
