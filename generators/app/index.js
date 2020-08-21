@@ -42,9 +42,9 @@ const MyGenerator = class extends Generator {
     // this.log('\n(2) prompting...')
 
     this.log(
-      `\nNote: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.\n`
+      `\nNote: the project stuff you are creating, will be created in the current folder (${process.cwd()}).\nAre you sure you want to continue? If no press ⌃C.`
     )
-    this.log(`\nNote: Remember to create a GitHub repository with the same name of your app.\n`)
+    this.log(`Note: Remember to create a GitHub repository with the same name of your app.\n\n`)
 
     // Yeoman tries to run your methods in the order that they are defined, but if you run any async code,
     // the function will exit before the actual work gets completed and Yeoman will start the next function early.
@@ -58,7 +58,7 @@ const MyGenerator = class extends Generator {
       {
         type: 'input',
         name: `appNameKebabCase`,
-        message: `What is your app's name? Use kebab-case-format`,
+        message: `App name in kebab-case-format`,
         default: kebabCase(this.appname), // Default to current folder name
         filter: kebabCase, // Transform input to kebab case
         validate: (str) => str.length > 0,
@@ -66,16 +66,16 @@ const MyGenerator = class extends Generator {
       {
         type: 'input',
         name: `appDescription`,
-        message: `Insert a description`,
+        message: `App description`,
       },
       {
         name: 'keywords',
-        message: 'Throw here some keywords of your project (comma separated)',
+        message: `App keywords (comma separated)`,
       },
       {
         type: 'confirm',
         name: 'privateRepository',
-        message: `Would you like to create a private repository?`,
+        message: `Private repository?`,
         default: true,
       },
       {
@@ -87,19 +87,19 @@ const MyGenerator = class extends Generator {
       {
         type: 'input',
         name: `githubUsername`,
-        message: `Insert GitHub username`,
+        message: `GitHub username`,
         store: true,
       },
       {
         type: 'input',
         name: `githubEmail`,
-        message: `Insert GitHub email`,
+        message: `GitHub email`,
         store: true,
       },
       {
         type: 'input',
         name: `firstLastName`,
-        message: `Insert first name and last name`,
+        message: `First name and last name`,
         store: true,
       },
       {
@@ -278,9 +278,9 @@ const MyGenerator = class extends Generator {
     this.spawnCommandSync('git', ['push', '-u', 'origin', 'master'])
 
     this.log(
-      `\nIf you haven't done this before, create a GitHub repository named '${appNameKebabCase}'.\n`
+      `\nNOTE: Create a GitHub repository named '${appNameKebabCase}', if you haven't already.`
     )
-    this.log(`App '${this.appname}' generated successfully. Bye :)`)
+    this.log(`Bye :)`)
   }
 }
 
