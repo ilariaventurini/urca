@@ -4,13 +4,13 @@
 
 </div>
 
-<!--<p align="center">
-   npm version
-  <a href="https://www.npmjs.com/package/urca">
+<p align="center">
+  <!-- npm version -->
+  <a href="https://www.npmjs.com/package/generator-urca">
     <img alt="npm"
-      src="https://img.shields.io/npm/v/urca">
+      src="https://img.shields.io/npm/v/generator-urca">
   </a>
-</p>-->
+</p>
 
 ---
 
