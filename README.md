@@ -54,7 +54,7 @@ The generator will ask you a few questions and will generate it for you.
 
 - app name
 - app description
-- keywords
+- app keywords
 - public or private repository
 - JavaScript or TypeScript
 - GitHub username
