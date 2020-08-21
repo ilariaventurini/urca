@@ -16,7 +16,7 @@
 
 A Yeoman generator to author JavaScript and TypeScript libraries.
 
-## ⚙️ Getting started
+## Getting started
 
 Before we begin, make sure you have the [Yeoman scaffolding toolset](https://yeoman.io/learning/index.html) installed (`yo`), since it is part of the Yeoman tool set you might have installed it before.
 Use npm to globally install `yo`:
@@ -39,8 +39,6 @@ npm install --global urca
 
 You are now ready to create your library!
 
----
-
 ## How to use
 
 The _urca_ generator will help you create a JavaScript or TypeScript application in your working directory.
@@ -52,6 +50,22 @@ yo urca
 
 The generator will ask you a few questions and will generate it for you.
 
+## Questions the generator will ask
+
+- app name
+- app description
+- keywords
+- public or private repository
+- JavaScript or TypeScript
+- GitHub username
+- GitHub email
+- first and last name
+- dependencies:
+  - [lodash](https://lodash.com/)
+  - [d3](https://github.com/d3/d3)
+  - [tachyons](https://github.com/tachyons-css/tachyons)
+  - [tachyons-extra](https://github.com/accurat/tachyons-extra)
+
 ## Directory structure
 
 When the installation process is over, this is the file structure that will be generated:
@@ -59,9 +73,9 @@ When the installation process is over, this is the file structure that will be g
 ```bash
 .
 ├── demo/              # demo page
-│   └── index.html     # html entry point
+│   └── index.html
 │   └── index.j(t)s
-│   └── style.css      # global style entry point
+│   └── style.css
 ├── dist/              # distributable version of app built using Parcel
 ├── node_modules/      # npm managed libraries
 ├── src/               # project source code
@@ -82,10 +96,10 @@ When the installation process is over, this is the file structure that will be g
 
 ## Features
 
-- [Prettier](https://prettier.io/) to format your Javascript
+- [Prettier](https://prettier.io/) to format your code
 - [Eslint](https://eslint.org/) to lint your code
 - [Parcel](https://parceljs.org/) to automagically compile ES6
-- [TypeScript](https://github.com/Microsoft/TypeScript) - strongly-typed version of ES6
+- [TypeScript](https://github.com/Microsoft/TypeScript)
 - Git initialization
 - README
 - MIT license
@@ -97,36 +111,16 @@ Once you have created the structure of your new app, these are the prompt comman
 - `yarn start:demo`: to preview and watch for demo page changes ([http://localhost:1234](http://localhost:1234))
 - `yarn build`: to build your webapp for production in `/dist`
 
-## Questions the generator will ask
-
-- app name
-- app description
-- keywords
-- public or private repository
-- JavaScript or TypeScript
-- GitHub username
-- GitHub email
-- first and last name
-- dependencies:
-  - [lodash](https://lodash.com/)
-  - [d3](https://github.com/d3/d3)
-  - [tachyons](https://github.com/tachyons-css/tachyons)
-  - [tachyons-extra](https://github.com/accurat/tachyons-extra)
-
-## 🐛 Issues & contributing
+## Issues & contributing
 
 This project is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
 
 ## Todo
 
-- [] Jest because testing matters
+- [ ] Jest because testing matters
+- [ ] React
 
 ## License
 
 [MIT](https://github.com/ilariaventurini/urca/blob/master/LICENSE) © [Ilaria
 Venturini](https://github.com/ilariaventurini)
-
-<!--
-TODO:
-- [ ]
--->
