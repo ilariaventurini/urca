@@ -7,11 +7,11 @@
 </div>
 
 <p align="center">
-  <!-- npm version -->
+  <!-- npm version 
   <a href="https://www.npmjs.com/package/<%= appNameKebabCase %>">
     <img alt="npm"
       src="https://img.shields.io/npm/v/<%= appNameKebabCase %>">
-  </a>
+  </a>-->
 </p>
 
 ---
