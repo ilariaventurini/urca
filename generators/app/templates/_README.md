@@ -46,10 +46,10 @@ Lorem ipsum dolor sit amet.
 
 A [demo page]() is available.
 
-## Issues & contributing
-
-This project is still in progress. Anyway, if you open an issue (or a PR), I will be happy :)
-
 ## License
 
 [MIT](https://github.com/<%= githubUsername %>/<%= appNameKebabCase %>/blob/master/LICENSE) © [<%= firstLastName %>](https://github.com/<%= githubUsername %>)
+
+---
+
+This project was bootstrapped with [urca generator](https://github.com/ilariaventurini/urca/).
