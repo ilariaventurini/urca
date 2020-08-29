@@ -1,6 +1,7 @@
 <div align="center" style="text-align: center;">
 
-  <h1>Urca generator</h1>
+  <h1>🌳 Urca generator</h1>
+  A Yeoman generator to author JavaScript and TypeScript libraries.
 
 </div>
 
@@ -13,8 +14,6 @@
 </p>
 
 ---
-
-A Yeoman generator to author JavaScript and TypeScript libraries.
 
 ## Getting started
 
