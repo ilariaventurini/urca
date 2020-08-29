@@ -1,20 +1,7 @@
 {
   "name": "generator-urca",
+  "description": "Yeoman generator for Javascript or TypeScript libraries",
   "version": "1.0.1",
-  "description": "Yeoman generator for TypeScript libraries",
-  "main": "generators/index.js",
-  "files": [
-    "generators"
-  ],
-  "keywords": [
-    "yeoman-generator",
-    "typescript",
-    "javascript",
-    "lodash",
-    "tachyons",
-    "prettier",
-    "eslint"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ilariaventurini/urca.git"
@@ -24,8 +11,19 @@
     "email": "venturini.ila@gmail.com",
     "url": "https://github.com/ilariaventurini"
   },
-  "license": "MIT",
   "private": false,
+  "license": "MIT",
+  "keywords": [
+    "yeoman-generator",
+    "typescript",
+    "javascript",
+    "lodash",
+    "tachyons",
+    "prettier",
+    "eslint"
+  ],
+  "main": "generators/index.js",
+  "files": [ "generators" ],
   "dependencies": {
     "chalk": "^3.0.0",
     "yeoman-generator": "^4.7.2"

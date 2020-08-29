@@ -3,14 +3,14 @@ const dependecies = [
   { name: 'd3', isDev: false, types: '@types/d3', isDefault: true, isMandatory: false },
   {
     name: 'tachyons',
-    isDev: false,
+    isDev: true,
     types: '',
     isDefault: true,
     isMandatory: false,
   },
   {
     name: 'tachyons-extra',
-    isDev: false,
+    isDev: true,
     types: '',
     isDefault: true,
     isMandatory: false,

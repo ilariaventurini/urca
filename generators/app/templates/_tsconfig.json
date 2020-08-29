@@ -13,12 +13,13 @@
     "sourceMap": true,
     "jsx": "react",
     "strict": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": false,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "declaration": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
