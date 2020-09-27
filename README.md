@@ -56,6 +56,7 @@ The generator will ask you a few questions and will generate it for you.
 - app keywords
 - public or private repository
 - JavaScript or TypeScript
+- add or not React to demo page
 - GitHub username
 - GitHub email
 - first and last name
@@ -73,7 +74,7 @@ When the installation process is over, this is the file structure that will be g
 .
 ├── demo/              # demo page
 │   └── index.html
-│   └── index.j(t)s
+│   └── index.j(t)s(x)
 │   └── style.css
 ├── dist/              # distributable version of app built using Parcel
 ├── node_modules/      # npm managed libraries
@@ -99,6 +100,7 @@ When the installation process is over, this is the file structure that will be g
 - [Eslint](https://eslint.org/) to lint your code
 - [Parcel](https://parceljs.org/) to automagically compile ES6
 - [TypeScript](https://github.com/Microsoft/TypeScript)
+- [React](https://reactjs.org) to simplify the development of the demo page
 - Git initialization
 - README
 - MIT license
@@ -118,6 +120,8 @@ This project is still in progress. Anyway, if you open an issue (or a PR), I wil
 
 - [ ] Jest because testing matters
 - [ ] React
+  - [ ] to lib
+  - [x] to demo page
 
 ## License
 
