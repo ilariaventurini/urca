@@ -100,7 +100,7 @@ When the installation process is over, this is the file structure that will be g
 - [Eslint](https://eslint.org/) to lint your code
 - [Parcel](https://parceljs.org/) to automagically compile ES6
 - [TypeScript](https://github.com/Microsoft/TypeScript)
-- [React](https://reactjs.org) to simplify the development of the demo page
+- [React](https://reactjs.org) to simplify the demo page development
 - Git initialization
 - README
 - MIT license
