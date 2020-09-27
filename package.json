@@ -1,7 +1,7 @@
 {
   "name": "generator-urca",
   "description": "Yeoman generator for Javascript or TypeScript libraries",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ilariaventurini/urca.git"
