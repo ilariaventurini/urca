@@ -1,6 +1,8 @@
 const dependecies = [
   { name: 'lodash', isDev: false, types: '@types/lodash', isDefault: true, isMandatory: false },
   { name: 'd3', isDev: false, types: '@types/d3', isDefault: true, isMandatory: false },
+  { name: 'react', isDev: true, types: '', isDefault: true, isMandatory: false },
+  { name: 'react-dom', isDev: true, types: '', isDefault: true, isMandatory: false },
   {
     name: 'tachyons',
     isDev: true,

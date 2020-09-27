@@ -12,6 +12,8 @@ Go to accurat/generator-urca-test and run `yo urca`.
 ## TODO
 
 - [ ] react
+  - [x] to demo page
+  - [ ] to lib
 - [ ] mobx mobx state tree
 - [ ] jest
 - [ ] storybook

@@ -85,6 +85,12 @@ const MyGenerator = class extends Generator {
         default: true,
       },
       {
+        type: 'confirm',
+        name: 'addReactToDemoPage',
+        message: `Do you want to add React to demo page?`,
+        default: true,
+      },
+      {
         type: 'input',
         name: `githubUsername`,
         message: `GitHub username`,
@@ -146,6 +152,7 @@ const MyGenerator = class extends Generator {
       license,
       keywords,
       useTypescript,
+      addReactToDemoPage,
     } = this.answers
 
     // package.json
@@ -209,20 +216,36 @@ const MyGenerator = class extends Generator {
     )
 
     // demo
-    this.fs.copyTpl(
-      this.templatePath('demo/_index_html.ejs'),
-      this.destinationPath('demo/index.html'),
-      {
-        useTypescript,
-        appName,
-      }
-    )
+    // .html
+    if (addReactToDemoPage) {
+      this.fs.copyTpl(
+        this.templatePath('demo/_index_html_react.ejs'),
+        this.destinationPath('demo/index.html'),
+        { useTypescript, appName }
+      )
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('demo/_index_html.ejs'),
+        this.destinationPath('demo/index.html'),
+        { useTypescript, appName }
+      )
+    }
+    // .css
     this.fs.copyTpl(this.templatePath('demo/_style.css'), this.destinationPath('demo/style.css'))
-    this.fs.copyTpl(
-      this.templatePath('demo/_index.ts'),
-      this.destinationPath(`demo/index.${useTypescript ? 'ts' : 'js'}`),
-      { useTypescript }
-    )
+    // .tsx | ts
+    if (addReactToDemoPage) {
+      this.fs.copyTpl(
+        this.templatePath('demo/_index.tsx'),
+        this.destinationPath(`demo/index.${useTypescript ? 'tsx' : 'jsx'}`),
+        { useTypescript }
+      )
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('demo/_index.ts'),
+        this.destinationPath(`demo/index.${useTypescript ? 'ts' : 'js'}`),
+        { useTypescript }
+      )
+    }
   }
 
   ////////////////////////////////////////
