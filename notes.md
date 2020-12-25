@@ -14,6 +14,7 @@ Go to accurat/generator-urca-test and run `yo urca`.
 - [ ] react
   - [x] to demo page
   - [ ] to lib
+  - [ ] se ts e react in demo page --> yarn add @types/react --dev
 - [ ] mobx mobx state tree
 - [ ] jest
 - [ ] storybook
