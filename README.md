@@ -18,23 +18,13 @@
 ## Getting started
 
 Before we begin, make sure you have the [Yeoman scaffolding toolset](https://yeoman.io/learning/index.html) installed (`yo`), since it is part of the Yeoman tool set you might have installed it before.
-Use npm to globally install `yo`:
+Use npm to globally install `yo` and the `urca` generator:
 
 ```bash
-npm install --global yo
+npm install --global yo generator-urca
 ```
 
-If you have permissions problems installing a package globally, use a _super user_ or _sudo_:
-
-```bash
-sudo npm install --global yo
-```
-
-Once you have `yo` installed, you will need to install the _urca generator_ as well:
-
-```bash
-npm install --global urca
-```
+(If you have permissions problems installing a package globally, you may use `sudo npm install ...`)
 
 You are now ready to create your library!
 
