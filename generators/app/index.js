@@ -145,6 +145,7 @@ const MyGenerator = class extends Generator {
       appNameKebabCase,
       appNameCapitalizeFirst,
       appDescription,
+      dependencies,
       privateRepository,
       githubUsername,
       githubEmail,
@@ -237,13 +238,13 @@ const MyGenerator = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('demo/_index.tsx'),
         this.destinationPath(`demo/index.${useTypescript ? 'tsx' : 'jsx'}`),
-        { useTypescript }
+        { useTypescript, dependencies }
       )
     } else {
       this.fs.copyTpl(
         this.templatePath('demo/_index.ts'),
         this.destinationPath(`demo/index.${useTypescript ? 'ts' : 'js'}`),
-        { useTypescript }
+        { useTypescript, dependencies }
       )
     }
   }
