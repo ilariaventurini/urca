@@ -1,58 +1,30 @@
+<% if (dependencies.includes('tachyons')) { %>
 import 'tachyons'
+<% } %>
+<% if (dependencies.includes('tachyons-extra')) { %>
 import 'tachyons-extra'
-import { hello } from '../dist/lib/hello'
-<% if (useTypescript) { %>
-import { select, Selection } from 'd3-selection'
-<% } else { %>
-import { select } from 'd3-selection'
 <% } %>
-
-///////////////////////////////////////////////////////////////////////////////
-
-const root = select('#app')
-const container = root.append('div').attr('class', 'w-100 h-100 flex flex-center')
-createDemo(container)
-
-///////////////////////////////////////////////////////////////////////////////
-
-<% if (useTypescript) { %>
-function createDemo(container: Selection<HTMLDivElement, unknown, HTMLElement, any>) {
-<% } else { %>
-function createDemo(container) {
-<% } %>
-  const example = container
-    .append('div')
-    .attr('id', 'example')
-    .attr('class', `flex flex-column`)
-    .html(hello('mitico'))
-}
-<% } %>
-  
-import 'tachyons'
-import 'tachyons-extra'
 import { hello } from '../src'
-<% if (useTypescript) { %>
-import { select, Selection } from 'd3-selection'
-<% } else { %>
-import { select } from 'd3-selection'
-<% } %>
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const root = select('#app')
-const container = root.append('div').attr('class', 'w-100 h-100 flex flex-center')
+const root = document.getElementById('app')
+const container = document.createElement('div')
+
+container.classList.add('w-100', 'h-100', 'flex', 'flex-center')
+root.appendChild(container)
 createDemo(container)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 <% if (useTypescript) { %>
-function createDemo(container: Selection<HTMLDivElement, unknown, HTMLElement, any>) {
+function createDemo(container: HTMLDivElement) {
 <% } else { %>
 function createDemo(container) {
 <% } %>
-  const example = container
-    .append('div')
-    .attr('id', 'example')
-    .attr('class', `flex flex-column`)
-    .html(hello('mitico'))
+  const example = document.createElement('div')
+  example.setAttribute('id', 'example')
+  example.classList.add('flex', 'flex-column')
+  example.innerText = hello('mitico')
+  container.appendChild(example)
 }
