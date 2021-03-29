@@ -15,26 +15,13 @@
 
 ---
 
-## Getting started
-
-Before we begin, make sure you have the [Yeoman scaffolding toolset](https://yeoman.io/learning/index.html) installed (`yo`), since it is part of the Yeoman tool set you might have installed it before.
-Use npm to globally install `yo` and the `urca` generator:
-
-```bash
-npm install --global yo generator-urca
-```
-
-(If you have permissions problems installing a package globally, you may use `sudo npm install ...`)
-
-You are now ready to create your library!
-
 ## How to use
 
 The _urca_ generator will help you create a JavaScript or TypeScript application in your working directory.
-To create your library project, navigate to a new project folder and then use `yo` to generate your application:
+To create your library project, **navigate to a new project folder** and then use [Yeoman](https://yeoman.io/learning/index.html) to generate your application:
 
 ```bash
-yo urca
+npm init yo urca
 ```
 
 The generator will ask you a few questions and will generate it for you.
