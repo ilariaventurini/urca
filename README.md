@@ -99,6 +99,7 @@ This project is still in progress. Anyway, if you open an issue (or a PR), I wil
 - [ ] React
   - [ ] to lib
   - [x] to demo page
+- [ ] tailwind instead of tachyons
 
 ## License
 
